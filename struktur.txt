@@ -1,0 +1,238 @@
+1 /user:
+
+    post
+    /register:
+    {
+        "no_hp": "08123456789",
+        "password": "password123",
+        "role": "ADMIN"  // atau "USER"
+    }
+
+    post
+    /login:
+    {
+        "no_hp": "08123456789",
+        "password": "password123"
+    }
+
+    Menambahkan Header Autentikasi:
+
+    Di setiap request selanjutnya, tambahkan header Authorization dengan nilai Bearer <token> yang Anda dapatkan dari respons login.
+    Contoh: Authorization: Bearer <token_jwt_anda>
+
+    Admin only!!:
+    /delete:
+    {
+        "id": "1"
+    }
+
+    get:
+    /user/dashboard
+
+2 UMKM:
+
+    check suspend
+    get:
+    http://127.0.0.1:5000/umkm/<umkm_id>
+
+    get:
+    http://127.0.0.1:5000/umkm/user/<user_id>
+
+    get:
+    /umkm/nonaktif
+
+    put
+    /umkm:
+    {
+    "id_user": 1,
+    "id": "1",
+    "nama": "UMKM Sejahtera",
+    "kategori": "Makanan",
+    "deskripsi": "Menjual makanan sehat",
+    "alamat": "Jl. Sejahtera No.1",
+    "no_kontak": "081234567891",
+    "npwp": "123456789012345",
+    "jam_buka": "08:00-18:00",
+    "foto_umkm": "url_foto_umkm",
+    "dokumen": "url_dokumen",
+    "status_umkm": true
+    }
+
+    post
+    /umkm:
+    {
+    "id_user": 1,
+    "nama": "UMKM Sejahtera",
+    "kategori": "Makanan",
+    "deskripsi": "Menjual makanan sehat",
+    "alamat": "Jl. Sejahtera No.1",
+    "no_kontak": "081234567891",
+    "npwp": "123456789012345",
+    "jam_buka": "08:00-18:00",
+    "foto_umkm": "url_foto_umkm",
+    "dokumen": "url_dokumen",
+    "status_umkm": true
+    }
+
+    put
+    /umkm/nonaktif/<user_id>
+    {
+    "id_user": 1,
+    "id": "1",
+    "nama": "UMKM Sejahtera",
+    "kategori": "Makanan",
+    "deskripsi": "Menjual makanan sehat",
+    "alamat": "Jl. Sejahtera No.1",
+    "no_kontak": "081234567891",
+    "npwp": "123456789012345",
+    "jam_buka": "08:00-18:00",
+    "foto_umkm": "url_foto_umkm",
+    "dokumen": "url_dokumen",
+    "status_umkm": true
+    }
+
+    delete
+    /umkm
+    {
+    "id": 1
+    }
+
+    delete
+    /umkm/nonaktif/<user_id>
+    {
+    "id": <umkm_id>
+    }
+
+    put
+    /umkm/status
+    {
+    "id": 1,           // Ganti dengan ID UMKM yang ingin Anda ubah
+    "status": true  // Status baru untuk UMKM (bisa "aktif" atau "nonaktif")
+    }
+
+    put
+    /umkm/suspend:
+    {
+    "id": 1,
+    "suspend": true  // atau false
+    }
+
+3   Produk:
+
+    put
+     {
+    "id": 3,
+    "id_umkm": 3,
+    "kode_produk": "A001",
+    "nama_produk": "Berubah",
+    "deskripsi": "Hilang",
+    "harga": 50000,
+    "masa_berlaku": "2024-12-31",
+    "foto_produk": "url_foto_produk",
+    "is_publik": false
+    }
+    post
+    /produk:
+     {
+    "id_umkm": 3,
+    "kode_produk": "A001",
+    "nama_produk": "Berubah",
+    "deskripsi": "Hilang",
+    "harga": 50000,
+    "masa_berlaku": "2024-12-31",
+    "foto_produk": "url_foto_produk",
+    "is_publik": false
+    }
+
+    /delete:
+    {
+    "id": 1
+    }
+
+    put
+    /produk/publish:
+    {
+    "id": 1,
+    "is_publik": true
+    }
+
+
+Manajemen Pengguna dan lainnya (Hanya untuk Admin):
+
+1   get/user(/):
+    {
+    "no_hp": "081234567891",
+    "token": "example_token",
+    "log": "User log"
+    }
+
+    atau
+
+    {
+        "no_hp": "08123456789",
+        "password": "password123",
+        "role": "ADMIN"  // atau "USER"
+    }
+
+    get:
+    /admin/dashboard
+
+    delete
+    /user:
+    {
+    "id": 1 
+    }   
+
+    put
+    /user/suspend:
+    {
+    "id": 1,
+    "suspend": true  // atau false
+    }
+
+    delete
+    /umkm
+    {
+    "id": "1"
+    }
+
+    get
+    /umkm/nonaktif
+
+    get
+    /umkm/nonaktif/<user_id>
+    
+    put
+    /umkm/suspend:
+    {
+    "id": 1,
+    "suspend": true  // atau false
+    }
+
+    list umkm & produk
+    get
+    /umkm/user/<user_id>
+
+    put
+    /user/role atau Admin
+    {
+    "id": 1,
+    "role": "ADMIN"
+    }
+
+    put
+    /user
+    {
+    "id": 1,
+    "no_hp": "081234567890",
+    "password": "123456",
+    "role": "USER"
+    }
+
+    post
+    /admin/add_user
+    {
+    "no_hp": "081234567890",
+    "password": "password123",
+    "role": "USER"  // Role bisa "USER" atau "ADMIN", default adalah "USER"
+    }
